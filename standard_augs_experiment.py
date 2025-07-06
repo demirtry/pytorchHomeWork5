@@ -5,7 +5,7 @@ from utils.visualization_utils import show_multiple_augmentations
 
 
 train_dir = Path('data/train')
-output_dir = Path('plots/standard_augs')
+output_dir = Path('results/standard_augs')
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # создаю стандартные аугментации
