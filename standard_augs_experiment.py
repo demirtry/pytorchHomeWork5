@@ -10,11 +10,11 @@ output_dir.mkdir(parents=True, exist_ok=True)
 
 # создаю стандартные аугментации
 standard_augmentations = {
-    'RandomHorizontalFlip': transforms.RandomHorizontalFlip(p=1),
-    'RandomCrop': transforms.RandomCrop(150),
-    'ColorJitter': transforms.ColorJitter(brightness=1.6, contrast=1.2, saturation=1.6, hue=0.1),
-    'RandomRotation': transforms.RandomRotation(degrees=55),
-    'RandomGrayscale': transforms.RandomGrayscale(p=1),
+    'RandomHorizontalFlip': transforms.RandomHorizontalFlip(p=1.0),
+    'RandomCrop': transforms.RandomCrop(200, padding=20),
+    'ColorJitter': transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.1),
+    'RandomRotation': transforms.RandomRotation(degrees=30),
+    'RandomGrayscale': transforms.RandomGrayscale(p=1.0),
 }
 
 all_augs = transforms.Compose(list(standard_augmentations.values()))
