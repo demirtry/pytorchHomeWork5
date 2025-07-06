@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 from torchvision import transforms
+import pandas as pd
 
 
 def show_images(images, path, labels=None, nrow=8, title=None, size=128):
@@ -128,4 +129,31 @@ def dataset_visualization(df):
 
     plt.tight_layout()
     plt.savefig('results/dataset_analysis/classes_count_dataset.png')
+    plt.close()
+
+
+def size_visualization(results):
+    df = pd.DataFrame(results)
+    df.to_csv('results/size_experiments/results.csv', index=False)
+
+    # График времени
+    plt.figure()
+    plt.plot(df['size'], df['memory_KB'], marker='o')
+    plt.xlabel('Image Size')
+    plt.ylabel('Time seconds')
+    plt.title('Time vs Size')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig('results/size_experiments/time_plot.png')
+    plt.close()
+
+    # График памяти
+    plt.figure()
+    plt.plot(df['size'], df['memory_KB'], marker='o', color='red')
+    plt.xlabel('Image Size')
+    plt.ylabel('Memory (Kb)')
+    plt.title('Peak Memory Usage vs Image Size (tracemalloc)')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig('results/size_experiments/memory_plot.png')
     plt.close()
