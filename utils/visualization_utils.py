@@ -157,3 +157,28 @@ def size_visualization(results):
     plt.tight_layout()
     plt.savefig('results/size_experiments/memory_plot.png')
     plt.close()
+
+
+def plot_training_history(epochs, train_losses, val_losses, train_accuracies, val_accuracies):
+    epochs = range(1, epochs + 1)
+
+    plt.figure(figsize=(12, 5))
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, train_losses, label='Train Loss')
+    plt.plot(epochs, val_losses, label='Val Loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.title('Loss per Epoch')
+    plt.legend()
+
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, train_accuracies, label='Train Acc')
+    plt.plot(epochs, val_accuracies, label='Val Acc')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy')
+    plt.title('Accuracy per Epoch')
+    plt.legend()
+
+    plt.tight_layout()
+    plt.savefig('results/resnet/train_history.png')
+    plt.close()
