@@ -102,3 +102,30 @@ def show_multiple_augmentations(original_img, augmented_imgs, path, titles):
     plt.tight_layout()
     plt.savefig(path)
     plt.close()
+
+
+def dataset_visualization(df):
+    class_counts = df['class'].value_counts().sort_index()
+
+    size_df = df[['width', 'height']].agg(['min', 'max', 'mean'])
+    size_df.to_csv('results/dataset_analysis/size_dataset_stats.csv')
+
+    plt.figure(figsize=(12, 4))
+
+    # Гистограмма размеров
+    plt.subplot(1, 2, 1)
+    plt.hist(df['area'], bins=30, color='skyblue', edgecolor='black')
+    plt.title("распределение размеров изображений")
+    plt.xlabel("размер (width × height)")
+    plt.ylabel("Количество")
+
+    # Кол-во изображений по классам
+    plt.subplot(1, 2, 2)
+    plt.bar(class_counts.index, class_counts.values, color='orange', edgecolor='black')
+    plt.title("Количество изображений по классам")
+    plt.xticks(rotation=45)
+    plt.ylabel("Количество")
+
+    plt.tight_layout()
+    plt.savefig('results/dataset_analysis/classes_count_dataset.png')
+    plt.close()
