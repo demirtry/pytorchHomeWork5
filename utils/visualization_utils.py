@@ -138,7 +138,7 @@ def size_visualization(results):
 
     # График времени
     plt.figure()
-    plt.plot(df['size'], df['memory_KB'], marker='o')
+    plt.plot(df['size'], df['time_seconds'], marker='o')
     plt.xlabel('Image Size')
     plt.ylabel('Time seconds')
     plt.title('Time vs Size')
@@ -152,7 +152,7 @@ def size_visualization(results):
     plt.plot(df['size'], df['memory_KB'], marker='o', color='red')
     plt.xlabel('Image Size')
     plt.ylabel('Memory (Kb)')
-    plt.title('Peak Memory Usage vs Image Size (tracemalloc)')
+    plt.title('Memory Usage vs Image Size')
     plt.grid(True)
     plt.tight_layout()
     plt.savefig('results/size_experiments/memory_plot.png')
